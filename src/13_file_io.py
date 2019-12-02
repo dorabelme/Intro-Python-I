@@ -1,6 +1,6 @@
 """
 Python makes performing file I/O simple. Take a look
-at how to read and write to files here: 
+at how to read and write to files here:
 
 https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 """
@@ -9,8 +9,8 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # Print all the contents of the file, then close the file
 
 # YOUR CODE HERE
-file = open("foo.txt", "r")
-print(file.read())
+with open("foo.txt", "r") as f:
+    print(f.read())
 
 # Open up a file called "bar.txt" (which doesn't exist yet) for
 # writing. Write three lines of arbitrary content to that file,
@@ -18,11 +18,10 @@ print(file.read())
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
-file2 = open("bar.txt", "w")
-file2.write("Line 1\n")
-file2.write("Line 2\n")
-file2.write("Line 3\n")
-file2.close()
+with open("bar.txt", "w") as f:
+    print(f.write("Line 1 text\nLine 2 text\nLine 3 text\n"))
 
-file3 = open("bar.txt", "r")
-print(file3.read())
+
+with open("bar.txt", "r") as f:
+    for line in f:
+        print(line, end='')

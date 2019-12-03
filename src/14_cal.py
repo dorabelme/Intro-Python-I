@@ -22,3 +22,30 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+import re
+
+arg = len(sys.argv)
+today = datetime.today()
+
+print(arg)
+print(sys.argv)
+
+if arg == 3 and int(sys.argv[1]) > 0 and int(sys.argv[1]) <= 12 and re.search(sys.argv[2], '.*([1-2][0-9]{3})'):
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+elif arg == 3 and (int(sys.argv[1]) <= 0 or int(sys.argv[1]) > 12) and len(sys.argv[2]) != 4:
+    print("Second argument should be greater than 0 and less than or equal to 12.")
+    print("Third argument should be 4 digits long.")
+elif arg == 2 and int(sys.argv[1]) > 0 and int(sys.argv[1]) <= 12:
+    month = int(sys.argv[1])
+    year = today.year
+elif arg == 2 and (int(sys.argv[1]) <= 0 or int(sys.argv[1]) > 12):
+    print("Second argument should be a number greater than 0 and less than or equal to 12.")
+elif arg == 1:
+    month = today.month
+    year = today.year
+else:
+    print("Input must have a format [month] [year] in numbers.")
+    exit(0)
+
+print(calendar.TextCalendar().formatmonth(year, month))
